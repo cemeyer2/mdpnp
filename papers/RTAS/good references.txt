@@ -1,0 +1,28 @@
+A recent report [1] suggested that of the 284,798 deaths that occurred among patients that involved one or more patient safety incidents between 2003 and 2005, 247,662 were potentially preventable. Hence, there is a need to increase the use of devices that can automatically check for safety constraints.
+
+
+Recent initiatives have been launched to increase the interoperability of medical devices to reduce medical accidents caused by such human errors [3]. One such initiative is the work on the Integrated Clinical Environment (ICE) draft standard [4]. It aims to provide integration of data and devices to enable real-time decision support and safety interlocks thus ensuring patient safety. The program covers a wide range of required efforts, from eliciting high- level clinical scenario to defining regulatory for patient-centric networked medical devices [5]. Some practical prototypes are developed and open platforms are constructed, to evaluate and realize the approaches [6, 7].
+
+
+
+
+
+[1] H. Grades, “Fourth Annual Patient Safety in American Hospitals Study,” 2007.
+[2] A. Marcus, “Once a Tech Fantasy, Plug-and-Play OR Edges Closer to Reality,” Anesthesiology News, vol. 33, no. 1, Jan. 2007. 
+[3] High Confidence Software and Systems Coordinating Group, “High-Confidence Medical Devices: Cyber-Physical Systems for 21st Century Health Care,” A Research and Development Needs
+Report, NITRD, Feb. 2009. 
+[4] J. Goldmann, “Medical Devices and Medical Systems—Essential
+safety requirements for equipment comprising the patient centric integrated clinical environment (ICE) — Part 1,” draft ASTM TC F29.21 N 21, Sep. 2008.
+[5] J. Goldmann, “Medical Device Interoperability to Enable System Solutions at the Sharp Edge of Healthcare Delivery,” White House Homeland Security Council Biodefense Directorate Conference presentation, Apr. 2009.
+[6] D. Arney, R. Jetley, P. Jones, I. Lee, and O. Sokolsky, “Formal Methods Based Development of a PCA Infusion Pump Reference Model: Generic Infusion Pump (GIP) Project,” in Proc. of Joint Workshop on HCMDSS-MDPnP, Jun. 2007.
+[7] A. King and et. al, “An Open Test Bed for Medical Device Integration and Coordination,” Kansas State University, Tech. Rep., 2008.
+[8] S. D. Baker and D. H. Hoglund, “Medical-grade, mission critical wireless networks,” IEEE Engineering in Medicine and Biology Magazine, Mar./Apr. 2008.
+[9] “CodeBlue:	Wireless	Sensors	for	Medical	Care,” http://fiji.eecs.harvard.edu/CodeBlue.
+[10] S. Fischmeister, O. Sokolsky, and I. Lee, “A Verifiable Language	for	Programming	Real-Time	Communication Schedules,” IEEE Trans. on Comp., vol. 56, no. 11, Nov. 2007.
+[11] N. Leveson and C. Turner, “An Investigation of the Therac-25 Accidents,” IEEE Computer, vol. 26, no. 7, pp. 18–41, July 1993.
+[12] Ratnesh Kumar , Mark A. Shayman, “Centralized and Decentralized Supervisory Control of Nondeterministic Systems Under Partial Observation,” SIAM Journal on Control and Optimization, v.35 n.2, p.363-383, March 1997.
+[13] Randy Cieslak et al, "Supervisory Control of Discrete-Event Processes with Partial Observations," IEEE Transactions on Automatic Control, vol. 33, no. 3, March 1988.
+[14] Nejib Ben Hadj-Alouane et al, “Centralized and Distributed Algorithms for On-Line Synthesis of Maximal Control Policies under Partial Observation," Discrete Event Dynamic Systems: Theory and Applications, 6, 379-427 (1996).
+[15] Teryl K., Nuckols, A.G., “Programmable Infusion Pumps in ICUs: An Analysis of Corresponding Adverse Drug Events,” Journal of General Internal Medicine, pp. 41-45, 2007
+[16] C. Kim and et. al, “A Framework for Wireless Integration in Interoperable Real-Time Medical Systems,” Tech. Rep. http://agora.cs.illinois.edu/display/mdpnp, 2009.
+[17] L. Schmitt, T. Falck, F. Wartena, and D. Simons, “Novel ISO/IEEE 11073 Standards for Personal Telehealth Systems Interoperability,”	in	Proc.	of	Joint	Workshop	on HCMDSSMDPnP, 2007.

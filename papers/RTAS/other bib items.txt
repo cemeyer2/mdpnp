@@ -1,0 +1,44 @@
+[20]	Fowler, Martin (2002). Patterns of Enterprise Application Architecture. Addison-Wesley. ISBN
+978-0321127426. 
+
+[22]	
+Mu Sun, Qixin Wang, Lui Sha. Building Reliable MD PnP Systems. Joint Workshop On High Confidence Medical Devices, Software, and Systems (HCMDSS) and Medical Device Plug-and-
+Play (MD PnP) Interoperability. June, 2007.
+
+
+Kohn LT, Corrigan JM, and Donaldson MS, eds. To Err Is Human: Building a Safer Health System, The National Academies Press, 2000.
+
+
+High-Confidence Medical Devices: Cyber-Physical Systems for 21st Century Health Care
+
+
+[8] R. Hofmann. Modeling medical devices for plug-and-play
+interoperability. Master’s thesis, MIT, June 2007. [9] Alarm systems - general requirements, tests and guidance systems in medical electrical equipment 
+
+
+D. Thompson and S. Warren. A small, high-fidelity re- flectance pulse oximeter. In 2007 Annual Conference and Exposition, American Society for Engineering Education,
+June 2007.
+
+
+Food and Drug Administration. Improving Patient Care by Reporting Problems with Medical Devices: A MedWatch Contin- uing Education Article. Available from: http://www.fda.gov/med- watch/articles/mdr/mdr.pdf; 1997.
+
+
+R. Alur and et. al. Formal specifications and analysis of the computer-assisted resuscitation algorithm (cara) infusion pump control system. International Journal on Software Tools for Technology Transfer, 2004.
+
+D. Arney and et. al. Formal methods based development of a pca infusion pump reference model: Generic infusion pump (gip) project. In Joint Workshop on HCMDSS/MDPnP, 2007.
+
+
+A. King and et. al, “An Open Test Bed for Medical Device Integration and Coordination,” Kansas State University, Tech. Rep., 2008.
+
+N. Leveson and C. Turner, “An Investigation of the Therac-25 Accidents,” IEEE Computer, vol. 26, no. 7, pp. 18–41, July 1993.
+
+Teryl K., Nuckols, A.G., “Programmable Infusion Pumps in ICUs: An Analysis of Corresponding Adverse Drug Events,” Journal of General Internal Medicine, pp. 41-45, 2007
+
+C. Kim and et. al, “A Framework for Wireless Integration in Interoperable Real-Time Medical Systems,” Tech. Rep. http://agora.cs.illinois.edu/display/mdpnp, 2009.
+
+L. Schmitt, T. Falck, F. Wartena, and D. Simons, “Novel ISO/IEEE 11073 Standards for Personal Telehealth Systems Interoperability,”	in	Proc.	of	Joint	Workshop	on HCMDSSMDPnP, 2007.
+
+[8] Whitehead, S. F., Goldman, J. M., "Medical Device Plug-And-Play". Patient Safety & Quality Healthcare Jan/Feb 2008. http://mdpnp.org/uploads/PSQH_Article.pdf.
+
+[9] Goldman, J. M., "Medical Device Safety & Innovation: preparing for system integration at the sharp edge of healthcare". Cyber Physical Systems Briefing 902 Hart Senate Office Building July 9, 2009. http://mdpnp.org/uploads/Capitol_Hill_NSF_CPS_MD_PnP_9July09.pdf.
+

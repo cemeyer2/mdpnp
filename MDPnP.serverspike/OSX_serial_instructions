@@ -1,0 +1,12 @@
+Instructions for getting serial communication working on OSX
+
+1. the MDPnP.serverspike project should have the RXTX jar file
+already in its build path with the native library location already
+set. This native library is for java 1.6 64 bit on OSX 10.5 only (which is what
+the mac minis that we have run)
+
+2. for the USB serial adapter, you need to get the driver for it
+from http://internap.dl.sourceforge.net/sourceforge/osx-pl2303/osx-pl2303-0.3.1-10.4-universal.dmg
+
+3. you can install minicom for direct terminal to the devices at
+http://minicom.darwinports.com/

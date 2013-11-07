@@ -1,0 +1,16 @@
+<html>
+	<head>
+		<title>vital signs demo</title>
+		<script src="yui/build/yui/yui.js"></script>
+		<script src="VitalSign.js"></script>
+		<script src="PulseOximeter.js"></script>
+	</head>
+	<body>
+		<div id="status"></div>
+		<script language="JavaScript">
+			var url = "http://nurburgring.cs.uiuc.edu:9122/";
+			var oximeter = new PulseOximeter(url);
+			oximeter.getRemoteReadings();
+		</script>
+	</body>
+</html>

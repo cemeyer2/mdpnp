@@ -1,0 +1,60 @@
+desc 'Builds mdpnp full file from source'
+task :default do
+  # testing mercurial from idea
+  # files that are super classes of others should come first
+  sources  = ["utility/Inheritance.js", "utility/Interface.js", "utility/resig.js", "MDPnP.js", "device/device.js", "device/actuator.js", "device/sensor.js"]
+  sources.push "vitalSign/vitalSign.js"
+  sources.push "controller/rules/rule.js"
+ 
+  sources += Dir.glob("**/*.js").reject{|f| f.include? "lib/"}.reject{|f| f.include? "test/"}.reject{|f| sources.include? f}.reject{|f| f.include? "MDPnP_full"}
+ 
+ 	
+
+ 
+  mdpnp = File.new('MDPnP_full.js', 'w')
+  sources.each do |source_filename|
+    puts "adding "+source_filename+" to dist file"
+    mdpnp.puts(File.read(source_filename))
+  end
+  
+  %x{java -jar yuicompressor-2.4.2.jar MDPnP_full.js -v -o MDPnP_full-min.js}
+end
+
+task :test do
+	sources = Dir.glob("test/tests/*.js")
+	
+	mdpnp = File.new("test/MDPnP_test_full.js", "w")
+	
+	sources.each do |source_filename|
+		mdpnp.puts(File.read(source_filename))
+	end
+end
+
+task :all do
+ 
+  # files that are super classes of others should come first
+  sources  = ["utility/Inheritance.js", "utility/Interface.js", "utility/resig.js", "MDPnP.js", "device/device.js", "device/actuator.js", "device/sensor.js"]
+  sources.push "vitalSign/vitalSign.js"
+  sources.push "controller/rules/rule.js"
+ 
+  sources += Dir.glob("**/*.js").reject{|f| f.include? "lib/"}.reject{|f| f.include? "test/"}.reject{|f| sources.include? f}.reject{|f| f.include? "MDPnP_full"}
+  sources += Dir.glob("test/tests/*.js")
+ 	
+
+ 
+  mdpnp = File.new('MDPnP_full_with_tests.js', 'w')
+  sources.each do |source_filename|
+    puts "adding "+source_filename+" to dist file"
+    mdpnp.puts(File.read(source_filename))
+  end
+end
+
+task :jslint do
+	sources = Dir.glob("**/*.js").reject{|f| f.include? "lib/"}.reject{|f| f.include? "test/"}.reject{|f| f.include? "MDPnP_full"}
+	sources.each do |source_filename|
+    	puts "jslint for "+source_filename
+    	out = %x{java -jar ../MDPnP.jsdoc/jsdoc_toolkit/java/classes/js.jar lib/jslint_rhino.js #{source_filename}}
+    	puts out
+    	puts "\n\n\n"
+  end
+end

@@ -1,0 +1,99 @@
+<html>
+<head>
+<script src="yui/build/yui/yui.js"></script>
+</head>
+
+<body>
+<div id="div1">
+</div>
+<br><br>
+<div id="div2">
+</div>
+<div id="console"></div>
+<script type="text/javascript">
+
+var heartRates = new Array();
+
+var loadedHr = function(obj){
+	Y = obj;
+	doSensorIO(Y, "hr","#div1", true);
+}
+
+var loadedO2 = function(obj)
+{
+	Y2 = obj;
+	doSensorIO(Y2,"O2","#div2",false);
+}
+
+var doSensorIO = function(Y, sensor, outputDiv, callAgain){
+	var output = Y.get(outputDiv);
+	var xdrConfig = {
+		id:'flash',
+		yid: Y.id,
+		src:'yui/build/io/io.swf'
+	};
+	Y.io.transport(xdrConfig);
+
+	var handleStart = function(id, a) {
+		Y.log("start firing.", "info", "io");
+	}
+
+	var handleSuccess = function(id, o, a) {
+		var text = o.responseText;
+		var obj = Y.JSON.parse(text);
+		heartRates.push(obj.value);
+		var html = "";
+		var chartURL = "http://chart.apis.google.com/chart?cht=lxy&chs=600x200&chxt=x,y&chd=t:";
+		var i;
+		for(i = 0; i < heartRates.length; i++)
+                        chartURL = chartURL+i+",";
+                chartURL = chartURL.substr(0,chartURL.length-1);
+		chartURL = chartURL+"|"
+		for(i = 0; i < heartRates.length; i++)
+			chartURL = chartURL+heartRates[i]+",";
+		chartURL = chartURL.substr(0,chartURL.length-1);
+		html = "<img src='"+chartURL+"'/>";
+		output.set('innerHTML',html);
+		Y.log("fetch successful","info","io");
+	}		
+
+	var handleFailure = function(id, o, a) {
+		Y.log("Error "+id+" " +a,"info","io");
+	}
+
+	var cfg = {
+		method: "GET",
+		xdr: {
+			use:'flash',
+			responseXML:false
+		},
+		on: {
+			start: handleStart,
+			success: handleSuccess,
+			failure: handleFailure
+		}
+	};
+
+	var doGet = function() {
+		Y.log("starting fetch", "info", "io");
+		Y.io("http://localhost:9122/?type=sensor&sensor="+sensor, cfg);
+		if(callAgain == true)
+		{
+			setTimeout("newYUI()",2500);
+		}
+	}
+	//alert("loaded");
+	Y.on("io:xdrReady", doGet);
+}
+
+function newYUI(){
+	YUI({base:"yui/build/"}).use("io-xdr","node", "substitute","json-parse", loadedHr);
+	//YUI({base:"yui/build/"}).use("io-xdr","node", "substitute","json-parse", loadedO2);
+}
+
+
+newYUI();
+</script>
+
+</body>
+</html>

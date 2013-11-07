@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<title>Console Sandbox</title>
+		<!--Libraries-->
+		<script src="../../lib/yui/build/yui/yui.js"></script>
+		<script src="../../lib/flxhr/flXHR.js"></script>
+		<script src="../../lib/json_parse.js"></script>
+		
+		<!--Utilities-->
+		<script src="../../utility/Inheritance.js"></script>
+		<script src="../../utility/Interface.js"></script>
+		<script src="../../utility/resig.js"></script>
+		
+		
+		<!--MDPnP Code-->
+		<script src="../../MDPnP.js"></script>
+		<script src="../../utility/event.js"></script>
+		<script src="../../utility/log.js"></script>
+		<script src="../../patient/Patient.js"></script>
+		<script src="../../vitalSign/vitalSign.js"></script>
+		<script src="../../vitalSign/spo2VitalSign.js"></script>
+		<script src="../../vitalsigns/vitalsigns.js"></script>
+		<script src="../../controller/controller.js"></script>
+		<script src="../../device/device.js"></script>
+		<script src="../../device/actuator.js"></script>
+		<script src="../../device/sensor.js"></script>
+		<script src="../../device/pump.js"></script>
+		<script src="../../device/pulseOximeter.js"></script>
+		<script src="../../env/Env.js"></script>
+		<script src="../../device/mockPulseOximeter.js"></script>
+		
+		<script src="../../controller/rules/rule.js"></script>
+		<script src="../../controller/rules/binaryConditions.js"></script>	
+		<script src="../../controller/rules/conditionFunctions/conditionFunctions.js"></script>
+		<script src="../../controller/rules/successFailureFunctions/successFailureFunctions.js"></script>
+		
+		<script src="../../controller/device_controllers/deviceController.js"></script>
+		<script src="../../controller/device_controllers/pumpController.js"></script>
+		<script src="../../controller/device_controllers/spo2Controller.js"></script>
+		<script src="../../controller/device_controllers/mockController.js"></script>
+	
+	</head>
+	<body>
+		<script>
+			var d = new Date();
+			//set to charlie's birthday
+			d.setTime(531940231963);
+			
+			var patient = new mdpnp.Patient("Charlie","M",d);
+
+			
+			
+		</script>
+	</body>
+</html>

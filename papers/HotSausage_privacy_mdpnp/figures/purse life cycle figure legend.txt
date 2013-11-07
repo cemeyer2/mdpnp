@@ -1,0 +1,9 @@
+Figure legend for purse life cycle
+
+- Single black arrowheads are direct references.
+- Double black arrowheads are direct references to functions to executed.
+- Double white arrowheads are references to functions via delegate objects.
+- Double open arrowheads with dashed lines represent a flow of execution.
+
+- Round labels represent a step in a sequence of steps.
+- Square label represent assignments as part of a sequence of steps.

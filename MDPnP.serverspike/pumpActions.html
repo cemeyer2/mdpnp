@@ -1,0 +1,70 @@
+<html>
+<head>
+<script src="yui/build/yui/yui.js"></script>
+<script src="Pump.js"></script>
+</head>
+<body>
+<input type="button" value="buzz on" id="buzzOn"/>
+<br />
+<br />
+<input type="button" value="buzz off" id="buzzOff"/>
+<br />
+<br />
+<input type="button" value="run pump" id="run" />
+<br />
+<br />
+<input type="button" value="stop pump" id="stop"/>
+<br />
+<br />
+<input type="button" value="set pump rate" id="setRate" />
+<br />
+<br />
+<input type="button" value="set pump direction" id="setDirection" />
+<br />
+<br />
+<div id="status"></div>
+
+<script>
+var pump = new Pump();
+
+YUI().use('node', function(Y) {
+    var node0 = Y.get('#buzzOn');
+    var onClick0 = function(e) {
+        pump.buzzOn();
+    };
+    node0.on('click', onClick0);
+
+    var node1 = Y.get('#buzzOff');
+    var onClick1 = function(e) {
+        pump.buzzOff();
+    };
+    node1.on('click', onClick1);
+
+    var node2 = Y.get('#run');
+    var onClick2 = function(e) {
+        pump.run();
+    };
+    node2.on('click', onClick2);
+
+    var node3 = Y.get('#stop');
+    var onClick3 = function(e) {
+        pump.stop();
+    };
+    node3.on('click', onClick3);
+
+    var node5 = Y.get('#setRate');
+    var onClick5 = function(e) {
+        pump.setRate();
+    };
+    node5.on('click', onClick5);
+
+    var node6 = Y.get('#setDirection');
+    var onClick6 = function(e) {
+        pump.setDirection();
+    };
+    node6.on('click', onClick6);
+});
+	
+</script>
+</body>
+</html>

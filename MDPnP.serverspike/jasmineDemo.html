@@ -1,0 +1,155 @@
+<html>
+<head>
+<script src="VitalSign.js"></script>
+<script src="jasmine/lib/jasmine.js"></script>
+<script src="jasmine/lib/TrivialReporter.js"></script>
+<script src="yui/build/yui/yui.js"></script>
+<link type="text/css" rel="stylesheet" href="jasmine/lib/jasmine.css"/>
+</head>
+<body>
+<div id="results"></div>
+<script>
+
+	describe('test suite 1', function(){
+
+		var vital;
+		var now;
+
+		beforeEach(function(){
+			var now = new Date(); //get rid of the var to make the 3rd test pass
+			vital = new VitalSign(80,99,now.getTime());
+		});
+		
+		
+		it('should have heart rate be 80', function() {
+			expect(vital.getHeartRate()).toEqual(80);
+		});
+
+		it('should have oxigen saturation percentage be 99', function() {
+			expect(vital.getOxigenSaturationPercentage()).toEqual(99);
+		});
+
+		it('should have time equal to when it was created', function() {
+			expect(vital.getTime().getTime()).toEqual(now.getTime());
+		});
+		
+		describe('nested suite 1', function(){
+
+		var vital;
+		var now;
+
+		beforeEach(function(){
+			now = new Date(); //get rid of the var to make the 3rd test pass
+			vital = new VitalSign(80,99,now.getTime());
+		});
+		
+		
+		it('should have heart rate be 80', function() {
+			expect(vital.getHeartRate()).toEqual(80);
+		});
+
+		it('should have oxigen saturation percentage be 99', function() {
+			expect(vital.getOxigenSaturationPercentage()).toEqual(99);
+		});
+
+		it('should have time equal to when it was created', function() {
+			expect(vital.getTime().getTime()).toEqual(now.getTime());
+		});
+	});
+	});
+	
+	describe('test suite 2', function(){
+
+		var vital;
+		var now;
+
+		beforeEach(function(){
+			now = new Date(); //get rid of the var to make the 3rd test pass
+			vital = new VitalSign(80,99,now.getTime());
+		});
+		
+		
+		it('should have heart rate be 80', function() {
+			expect(vital.getHeartRate()).toEqual(80);
+		});
+
+		it('should have oxigen saturation percentage be 99', function() {
+			expect(vital.getOxigenSaturationPercentage()).toEqual(99);
+		});
+
+		it('should have time equal to when it was created', function() {
+			expect(vital.getTime().getTime()).toEqual(now.getTime());
+		});
+	});
+
+	Jasmine.getEnv().execute();
+	
+
+	var outputResults = function(outputDiv)
+	{
+		YUI({base:"yui/build/"}).use("node", function(Y)
+		{
+			var results = Jasmine.getEnv().currentRunner.results;
+			var message = "Total Tests: "+results.totalCount+"<br/>";
+			message = message +"Passed Tests: "+results.passedCount+"<br/>";
+			message = message +"Failed Tests: "+results.failedCount+"<br/>";
+	
+			message = message+"<br/><br/>Failure Messages:<br/><br/>";
+			
+			var recursive_results = function(res)
+			{
+				if(res.results)
+				{
+					var i;
+					for(i = 0; i < res.results.length; i++)
+					{
+						recursive_results(res.results[i]);
+					}
+				}
+				else
+				{
+					if(res.passed == false)
+						message = message + res.message +"<br/>";
+				}
+			}
+	
+			recursive_results(results);
+	
+			var output = Y.get(outputDiv);
+			output.set('innerHTML',message);
+		});
+	}
+	
+	var prettyPrintJasmineResults = function(outputDiv){
+		
+		YUI({base:"yui/build/"}).use("node", function(Y){
+			var html = "";
+			var suites = Jasmine.getEnv().currentRunner.suites;
+			for(suite_index in suites){
+				var suite = suites[suite_index];
+				html += "<b>"+suite.description+"</b> (passed: "+suite.results.passedCount+", failed: "+suite.results.failedCount+")<br /><ul>";
+				for(spec_index in suite.specs){
+					var spec = suite.specs[spec_index];
+					var results = spec.results;
+					var passed = (results.passed())? "passed" : "<b>failed</b>";
+					var openFont = (results.passed())? "<font color='#00FF00'>" : "<font color='#FF0000'>";
+					
+					var line = "<li>"+openFont+spec.description+": "+passed;
+					if(results.passed() == false)
+						line += ": "+results.results[0].message;
+					line += "</font></li>";
+
+					html += line;
+				}
+				html+="</ul><br />";
+			}
+			
+			var output = Y.get(outputDiv);
+			output.set('innerHTML',html);
+		});
+	};
+	
+	prettyPrintJasmineResults("#results");
+</script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<html>
+	<head>
+	
+		<style type="text/css">
+		    div.workarea { padding:10px; float:left }
+
+ul.draglist { 
+    position: relative;
+    width: 200px; 
+    height:240px;
+    background: #f7f7f7;
+    border: 1px solid gray;
+    list-style: none;
+    margin:0;
+    padding:0;
+}
+
+ul.draglist li {
+    margin: 1px;
+    cursor: move;
+    zoom: 1;
+}
+
+ul.draglist_alt { 
+    position: relative;
+    width: 200px; 
+    list-style: none;
+    margin:0;
+    padding:0;
+    /*
+       The bottom padding provides the cushion that makes the empty 
+       list targetable.  Alternatively, we could leave the padding 
+       off by default, adding it when we detect that the list is empty.
+    */
+    padding-bottom:20px;
+}
+
+ul.draglist_alt li {
+    margin: 1px;
+    cursor: move; 
+}
+
+
+li.list1 {
+    background-color: #D1E6EC;
+    border:1px solid #7EA6B2;
+}
+
+li.list2 {
+    background-color: #D8D4E2;
+    border:1px solid #6B4C86;
+}
+
+		</style>
+	
+		<!--Libraries-->
+		<script src="../../../lib/yui/build/yui/yui.js"></script>
+		<script src="../../../lib/flxhr/flXHR.js"></script>
+		<script src="../../../lib/json_parse.js"></script>
+		
+		<!--Utilities-->
+		<script src="../../../utility/Inheritance.js"></script>
+		<script src="../../../utility/Interface.js"></script>
+		<script src="../../../utility/resig.js"></script>
+		
+		<!--MDPnP Code-->
+		<script src="../../../MDPnP.js"></script>
+		<script src="../../../utility/event.js"></script>
+		<script src="../../../patient/Patient.js"></script>
+		<script src="../../../vitalSign/vitalSign.js"></script>
+		<script src="../../../vitalSign/spo2VitalSign.js"></script>
+		<script src="../../../vitalSign/bgVitalSign.js"></script>
+		<script src="../../../vitalsigns/vitalsigns.js"></script>
+		<script src="../../../controller/controller.js"></script>
+		<script src="../../../device/device.js"></script>
+		<script src="../../../device/actuator.js"></script>
+		<script src="../../../device/sensor.js"></script>
+		<script src="../../../device/pump.js"></script>
+		<script src="../../../device/pulseOximeter.js"></script>
+		<script src="../../../controller/device_controllers/deviceController.js"></script>
+		<script src="../../../controller/device_controllers/mockController.js"></script>
+		<script src="../../../controller/device_controllers/pumpController.js"></script>
+		<script src="../../../controller/device_controllers/spo2Controller.js"></script>
+		<script src="../../../device/mockPulseOximeter.js"></script>
+		<script src="../../../device/mockBloodGlucoseMonitor.js"></script>
+		<script src="../../../env/Env.js"></script>
+		<script src="../../../utility/log.js"></script>
+		
+		<script src="../../../controller/rules/rule.js"></script>
+		<script src="../../../controller/rules/binaryConditions.js"></script>	
+		<script src="../../../controller/rules/conditionFunctions/conditionFunctions.js"></script>
+		<script src="../../../controller/rules/successFailureFunctions/successFailureFunctions.js"></script>
+		
+		<script src="../../../test/UC1_Rules/UC1_Rules.js"></script>
+		<script src="../../../test/UC7_Rules/UC7_Rules.js"></script>
+		
+	
+		<!-- YUI 2 Scripts -->
+		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/tabview/assets/skins/sam/tabview.css">
+		<script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+		<script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/element/element-debug.js"></script>
+		<script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/connection/connection-min.js"></script>
+		<script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/tabview/tabview-debug.js"></script>
+		<link type="text/css" rel="stylesheet" href="http://yui.yahooapis.com/2.7.0/build/datatable/assets/skins/sam/datatable.css">
+		<script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/datasource/datasource-min.js"></script>
+		<script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/json/json-min.js"></script>
+		<script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/get/get-min.js"></script>
+		<script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/dragdrop/dragdrop-min.js"></script>
+		<script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/calendar/calendar-min.js"></script>
+		<script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/datatable/datatable-min.js"></script>
+		<script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/charts/charts-min.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/fonts/fonts-min.css" />
+		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/container/assets/skins/sam/container.css" />
+		<script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/container/container-min.js"></script>
+		<script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/animation/animation-min.js"></script>
+		
+		<!-- GUI Scripts -->
+		<script src="gui_spike.js"></script>
+		<script src="rules_tabs/conditionFunctionsTab.js"></script>
+		<script src="rules_tabs/conditions_tab.js"></script>
+		<script src="rules_tabs/success_failure_functions_tab.js"></script>
+		<script src="rules_tabs/compose_rules_tab.js"></script>
+		<script src="rules_tabs/attach_rules_tab.js"></script>
+		<script src="controller_tabs/controller_tabs.js"></script>
+		<script src="patient_tabs/patient_tabs.js"></script>
+		<script src="device_tabs/device_tabs.js"></script>
+			
+	</head>
+	<body class="yui-skin-sam">
+		<div id="tabs" class="yui-navset">
+    		<ul class="yui-nav">
+        		<li class="selected"><a href="#tab1"><em>Controller</em></a></li>
+        		<li><a href="#tab2"><em>Rules</em></a></li>
+        		<li><a href="#tab3"><em>Devices</em></a></li>
+        		<li><a href="#tab4"><em>Patient</em></a></li>
+    		</ul>            
+    		<div class="yui-content">
+        		<!-- BEGIN MAIN TAB 1 -->
+        		<div id="main_tab_1">
+        		</div>
+        		<!-- END MAIN TAB 1 -->
+        		<!-- BEGIN MAIN TAB 2 -->
+        		<div id="main_tab_2">
+					<!-- tabs within tabs for rules setup -->
+					<div id="rules_tabs" class="yui-navset">
+						<ul class="yui-nav">
+							<li class="selected"><a href="#tab1"><em>Condition Functions</em></a></li>
+							<li><a href="#tab2"><em>Conditions</em></a></li>
+							<li><a href="#tab3"><em>Success/Failure Functions</em></a></li>
+							<li><a href="#tab5"><em>Compose Rule</em></a></li>
+							<li><a href="#tab6"><em>Attach/Detach Rules From Controller</em></a></li>
+						</ul>
+						<div class="yui-content">
+							<!-- BEGIN RULES TAB 1 -->
+							<div id="rules_tab_1">
+								<p>
+									placeholder to construct condition functions
+								</p>
+							</div>
+							<!-- END RULES TAB 1 -->
+							<!--  BEGIN RULES TAB 2 -->
+							<div id="rules_tab_2">
+								<p>
+									place holder to construct conditions
+								</p>
+							</div>
+							<!-- END RULES TAB 2 -->
+							<!-- BEGIN RULES TAB 3 -->
+							<div id="rules_tab_3">
+								<p>
+									place holder to construct success functions
+								</p>
+							</div>
+							<!-- END RULES TAB 3 -->
+							<!-- BEGIN RULES TAB 4 -->
+							<div id="rules_tab_4">
+								<p>
+									place holder to compose rules
+								</p>
+							</div>
+							<!-- END RULES TAB 4 -->
+							<!-- BEGIN RULES TAB 5 -->
+							<div id="rules_tab_5">
+							</div>
+							<!-- END RULES TAB 5 -->
+						</div>	
+					</div>
+				</div>
+				<!-- END MAIN TAB 2 -->
+				<!-- BEGIN MAIN TAB 3 -->
+        		<div id="main_tab_3">
+        			<!-- tabs within tabs for devices -->
+					<div id="devices_tabs" class="yui-navset">
+						<ul class="yui-nav">				
+						</ul>
+						<div class="yui-content">
+						</div>	
+					</div>
+        		</div>
+    			<!-- END MAIN TAB 3 -->
+    			<!-- BEGIN MAIN TAB 4 -->
+    			<div id="main_tab_4">
+    				<!-- tabs within tabs for patient -->
+					<div id="patient_tabs" class="yui-navset">
+						<ul class="yui-nav">
+							<li class="selected"><a href="#tab1"><em>Patient Info</em></a></li>
+							<li><a href="#tab2"><em>Heart Rate</em></a></li>
+							<li><a href="#tab3"><em>Blood Oxygen</em></a></li>
+						</ul>
+						<div class="yui-content">
+							<!-- BEGIN PATIENT TAB 1 -->
+							<div id="patient_tab_1">
+								<p>
+									placeholder for info about patient
+								</p>
+							</div>
+							<!-- END PATIENT TAB 1 -->
+							<!--  BEGIN PATIENT TAB 2 -->
+							<div id="patient_tab_2">
+								<p>
+									display vital signs for patient here
+								</p>
+							</div>
+							<!-- END PATIENT TAB 2 -->
+							<!-- BEGIN PATIENT TAB 3 -->
+							<div id="patient_tab_3">
+								<p>
+									display vital signs for patient here
+								</p>
+							</div>
+							<!-- END PATIENT TAB 3 -->
+						</div>	
+					</div>
+    			</div>
+    			<!-- END MAIN TAB 4 -->
+    		</div>
+		</div>	
+	</body>
+</html>

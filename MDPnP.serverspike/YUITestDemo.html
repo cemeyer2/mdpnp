@@ -1,0 +1,73 @@
+<html>
+	<head>
+		<title>YUI Test Demo</title>
+		<script src="yui/build/yui/yui.js"></script>
+		<script src="VitalSign.js"></script>
+		
+		<link type="text/css" rel="stylesheet" href="yui/build/cssfonts/fonts-min.css" />
+
+	</head>
+	<body>
+		<script language="JavaScript">
+			YUI({base:"yui/build/", timeout: 10000}).use("node", "console", "yuitest",function (Y) {
+
+			Y.namespace("uiuc.mdpnp");
+			
+			 Y.uiuc.mdpnp.VitalSignTests = new Y.Test.Case({
+			 	
+				name : "VitalSign Tests",
+    
+    			setUp : function () {
+        			this.now = new Date();
+					this.vs = new VitalSign(80,99,this.now.getTime());
+    			},
+    
+    			tearDown : function () {
+        			delete this.now;
+					delete this.vs;
+    			},
+    
+    			testHeartRate : function () {
+        			var Assert = Y.Assert;
+        
+        			Assert.isObject(this.vs);
+        			Assert.isNumber(this.vs.getHeartRate());
+        			Assert.areEqual(80, this.vs.getHeartRate());            
+    			},
+    
+    			testOxigenSaturationPercentage : function () {
+        			var Assert = Y.Assert;
+        
+        			Assert.isObject(this.vs);
+        			Assert.isNumber(this.vs.getOxigenSaturationPercentage());
+        			Assert.areEqual(99, this.vs.getOxigenSaturationPercentage());            
+    			},
+    
+    			testCreatedTime : function () {
+        			var Assert = Y.Assert;
+        
+        			Assert.isObject(this.vs);
+        			Assert.areEqual(this.now.getTime(), this.vs.getTime().getTime());
+    			}
+
+			});
+			
+			Y.uiuc.mdpnp.ExampleSuite = new Y.Test.Suite("Example Test Suite"); 
+			Y.uiuc.mdpnp.ExampleSuite.add(Y.uiuc.mdpnp.VitalSignTests); 
+			
+			var r = new Y.Console({
+    			verbose : true,
+    			newestOnTop : false
+			});
+
+			r.render('#testLogger');
+
+			Y.Test.Runner.add(Y.uiuc.mdpnp.ExampleSuite);
+
+			Y.Test.Runner.run();
+			});
+
+		</script>
+		<div id="testLogger"></div>
+	</body>
+</html>

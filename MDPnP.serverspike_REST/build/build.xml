@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MDPnP.server" default="dist">
+	
+	<taskdef name="jarbundler" classname="net.sourceforge.jarbundler.JarBundler" classpath="lib/jarbundler-2.1.0.jar"/>
+	
+	<path id="compile.classpath">
+		<fileset dir="${basedir}/../lib">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="compile.tests.classpath">
+		<fileset dir="${basedir}/../lib">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="dist/jar/">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+
+	
+	<target name="init">
+		<delete dir="build"/>
+		<delete dir="build.tests"/>
+		<delete dir="dist"/>
+		<mkdir dir="build"/>
+		<mkdir dir="build.tests"/>
+		<mkdir dir="dist"/>
+		<mkdir dir="dist/jar"/>
+	</target>
+		
+	<target name="compile" depends="init">
+		<javac srcdir="${basedir}/../src" destdir="build/" classpathref="compile.classpath"/>
+	</target>
+		
+	<target name="doc" depends="init">
+		
+	</target>
+	
+	<target name="jar" depends="compile">
+		<jar destfile="dist/jar/MDPnP.server.jar">
+			<fileset dir="build/"/>
+		    <manifest>
+		    	<attribute name="Built-By" value="${user.name}"/>
+		      	<attribute name="Implementation-Vendor" value="UIUC"/>
+		      	<attribute name="Implementation-Title" value="MDPnP Server"/>
+		    	<attribute name="Main-Class" value="edu.illinois.mdpnp.server.RESTServer"/>
+		    </manifest>
+		  </jar>
+	</target>
+	
+	<target name="dist" depends="jar">
+		<copy todir="dist/jar" flatten="true">
+			<fileset dir="${basedir}/../lib/"/>
+		</copy>
+		
+		<jarbundler dir="dist"
+			name="MDPnP Server"
+		    mainclass="edu.illinois.mdpnp.server.gui.GUIServer"
+			jvmversion="1.6+"
+			>
+			<jarfileset dir="dist/jar">
+		    	<include name="**/*.jar" />
+		  	</jarfileset>
+			
+			<javafilelist dir="dist/jar" files="librxtxSerial.jnilib"/>
+		</jarbundler>
+
+	</target>
+		
+	<target name="compile.tests" depends="jar">
+		<javac srcdir="${basedir}/../test/" destdir="build.tests/" classpathref="compile.tests.classpath"/>
+	</target>
+		
+	<target name="test" depends="compile.tests">
+		<junit printsummary="yes" haltonfailure="yes">
+		  	<classpath>
+		    	<pathelement location="build.tests"/>
+		  		<fileset dir="${basedir}/../lib/">
+		  			<include name="*.jar"/>
+		  		</fileset>
+		  		<fileset dir="dist/jar/">
+		  			<include name="*.jar"/>
+		  		</fileset>
+		  	</classpath>
+
+		  	<formatter type="plain"/>
+
+		  	<test name="edu.illinois.mdpnp.test.TestSuite" haltonfailure="no" outfile="result">
+		    	<formatter type="xml"/>
+		  	</test>
+		</junit>
+	</target>
+	
+</project>
